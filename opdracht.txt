@@ -10,4 +10,65 @@ Er zijn voorbeeld files (staan in git)
     file met main: hoofd.cc
     header file met klassen (en leesgetal): koffiebord.h
     bijbehorende c++-file: koffiebord.cc 
-    bijpassende makefile (let op de tabs)
+    bijpassende makefile (let op de TABs)
+
+Het spel
+    1. De speler ziet een rechthoek met m(hoogte) bij n (breedte) vakejes, alle gesloten
+    2. op een aantal vakjes staat (verbogen) een kop koffie of thee
+    3. speler krijgt vantervoren te horen hoeveel kopjes koffie of thee er zijn
+    4. speler slecteert vakje (geeft coordinaten)
+    5. staat daar een koop koffie -> speler heeft verloren (koffie moet worden opgedronken?)
+    5.5. geen koffie -> getal tussen 0 en 8: het aantal directe buurvakjes (horizon-, verticaal en diagnoaal) dat een kop koffie bevat 
+
+spel spelen
+1. speler kiest 
+        grootte van bord (rijen m en kolommen n) 
+        percentage van vakjes gevuld met koffie
+            gebruik random() uit <cstdlib>; denk aan srand() en gebruik leesgetal
+            exacte aantal wordt aan speler laten lezen
+2. speler kiest
+    hij/zij speelt zelf een spel
+    -> aantal spelletjes mag worden gekozen?
+        3. eerst geopende vakje bevat nooit een kop koffie
+        4. als mens speelt: stand wordt op het scherm vertoond
+        5. mens kan:
+            de zet doen (vak openen) 
+            of een zet terugnemen (zie straks)
+            of random zet laten doen
+            of een vakje markeren met een 'K'
+            (als geopende plek an eerder is geopend -> speler opnieuw kiezen)
+        6. aantal gedane zetten wordt steeds vertoond
+        7. mens kan vakje markeren met een vermoedelijke kop koffie 
+            (telt niet mee voor aantal zetten)
+        8. als een vakje met 0 koffie buren wordt geopend -> alle buren worden veilig opgevraagd?
+            schrijf hiervoor een recurssie functie die dit automatisch doet
+        9.speler wint als -> alle vakjes die geen koffie bevatten zijn geopend. 
+    of spel wordt volledig random gespeeld
+    -> aantal spelletjes mag worden gekozen
+        3. in twee arrats, een voor de gewonnen eneen voor de verlore spelletjes, bijgehouden hoeveel zette het telkens duurde
+        4. na afloop -> print hoeveel spelletjes z zetten duurden (z = 0,1,...) ten behove van een grafiek (zie onder)
+
+schrijf een funtie voor de klasse koffiebord die een pointer structuur aanlegt.
+    - ieder vakje, naast bijvoorbeeld een ind en enkele bool's als inhoud, 
+        tevens een array met 8 pointers naar de onmiddelijke buren heeft:
+        middenboven (0), rechtsboven (1), rechts (2), rechtsonder (3), middenonder (4), linksonder (5), links (6) en linksboven (7). 
+    - vakjes aan de random bevatten diverse nullptr's.
+    - het bord is dus NIET een m bij n array, maar een pointerstructuur
+
+Bij de menselijke speler moeten alle complete borden op een stapel worden bijgehouden.
+deze kunnen daarmee teruggenomen worden. 
+zodra een speler zet, wordt een kopie van het bord opgeslagen. 
+dit onderdeel is niet eenvoudig, mocht het ontbreken, dan kost dat een punt.
+
+Het is de bedoeling om een vijftal files te produceren: 
+    1.  bevat main en het menutje
+    2. (zeg koffiebord.h, zie boven) bevat de klasse-definitie voor koffiebord
+    3. (zeg koffiebord.cc, zie boven) bevat de functies uit die klasse.
+     Evenzo zijn er files stapel.h en stapel.cc, indien van toepassing. Maak als het kan ook een makefile.
+
+Opmerkingen:
+- elke functie mag cirva 30 regels lang zijn (main mag langer als er een menu in zit)
+- elke functie moet commentaar bevatten 
+- te gebruiken headerfile : iostream, ctime en ctslib (voor random)
+- Let op goed parametergebruik: alle parameters, met uitzondering van membervariabelen, in de heading doorgeven, en de variabele-declaraties zowel bij main als bij de andere functies aan het begin.
+- indicatie voor lengte regels: 600 regels 
