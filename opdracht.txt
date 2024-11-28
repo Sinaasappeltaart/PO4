@@ -1,0 +1,13 @@
+Hier staat een samenvatting van de opdracht. Leek me handiggg :D 
+-eenpersoons spel koffiesweerper programmeren (aka minesweeper)
+
+klasse koffiebord maken
+    memberfuncties: o.a. drukaf, menszet en random zet
+    klasse heeft een constructor en een destructur (zoek op wat dat is)
+    gedane zetten mbv een stapel moeten ongedaan gemaakt kunnen worden
+
+Er zijn voorbeeld files (staan in git)
+    file met main: hoofd.cc
+    header file met klassen (en leesgetal): koffiebord.h
+    bijbehorende c++-file: koffiebord.cc 
+    bijpassende makefile (let op de tabs)
